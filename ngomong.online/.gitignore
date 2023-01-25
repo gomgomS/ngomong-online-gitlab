@@ -1,6 +1,6 @@
-static/storage/
-static/upload_c/
-static/upload/
+# static/storage/
+# static/upload_c/
+# static/upload/
 
 *.pyc
 *.swp
@@ -34,7 +34,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
