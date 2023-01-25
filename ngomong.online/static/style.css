@@ -1,0 +1,157 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+body > h1 {
+  margin: 1.5rem 0;
+  font-family: Helvetica, sans-serif;
+  color: #333;
+}
+.player {
+  width: 95%;
+  max-width: 750px;
+  position: relative;
+  font-size: 0;
+  overflow: hidden;
+}
+.video-container {
+  width: 100%;
+}
+.controls__btn {
+  background: none;
+  border: 0;
+  line-height: 1;
+  color: white;
+  text-align: center;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+  max-width: 50px;
+}
+.controls {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  flex-wrap: wrap;
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+}
+.controls > * {
+  flex: 1;
+}
+.progress {
+  flex: 10;
+  position: relative;
+  display: flex;
+  flex-basis: 100%;
+  height: 5px;
+  /* background: rgba(0,0,0,0.5); */
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  height: 15px;
+}
+.progress__filled {
+  width: 50%;
+  background: #AA5500;
+  flex: 0;
+  flex-basis: 0%;
+}
+
+body{
+  background-color:#0f0f1b;
+ 
+}
+
+.card{
+  border:none;
+}
+.free{
+  color:#9390b8;
+  display:block;
+}
+.amount{
+  color:#352f7a;
+  font-weight:700;
+  font-size:45px;
+}
+.btn{
+  background-color:#fff5f4;
+  border-radius:30px;
+  color:#ff7c6a;
+  width:150px;
+  font-size:15px;
+}
+.btn1{
+  background-color:#ff7d6b;
+  border:none;
+  border-radius:30px;
+  color:#fff;
+  font-size:15px;
+  
+}
+.card1{
+  background-image: linear-gradient(to right top, #28207c, #322083, #3b208a, #452091, #4f1f97, #5d1f97, #6a2096, #762196, #832890, #8e318a, #963b85, #9c4682);
+}
+.amount1{
+  color:#fff;
+  font-weight:700;
+  font-size:45px;
+}
+.plan1{
+  color:#594a90;
+}
+
+body{
+  background-color:#0f0f1b;
+ 
+}
+
+.card{
+  border:none;
+}
+.free{
+  color:#9390b8;
+  display:block;
+}
+.amount{
+  color:#352f7a;
+  font-weight:700;
+  font-size:45px;
+}
+.btn{
+  background-color:#fff5f4;
+  border-radius:30px;
+  color:#ff7c6a;
+  width:150px;
+  font-size:15px;
+}
+.btn1{
+  background-color:#ff7d6b;
+  border:none;
+  border-radius:30px;
+  color:#fff;
+  font-size:15px;
+  
+}
+.card1{
+  background-image: linear-gradient(to right top, #28207c, #322083, #3b208a, #452091, #4f1f97, #5d1f97, #6a2096, #762196, #832890, #8e318a, #963b85, #9c4682);
+}
+.amount1{
+  color:#fff;
+  font-weight:700;
+  font-size:45px;
+}
+.plan1{
+  color:#594a90;
+}

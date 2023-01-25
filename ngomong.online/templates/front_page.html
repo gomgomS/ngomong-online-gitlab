@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="../static/assets/img/favicon.ico">
+    <title>ngomong</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link href="../static/css/styles.css" rel="stylesheet" />
+    <style>
+
+    </style>
+</head>
+
+<body id="page-top">
+    <!--Modal: modalCoupon-->
+    <div class="modal fade top" id="modalSorry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-frame modal-top modal-notify modal-success" role="document">
+        <!--Content-->
+        <div class="modal-content">
+        <!--Body-->
+        <div class="modal-body">
+            <div class="row d-flex justify-content-center align-items-center">
+
+                <h3 class="badge">Sorry!!</h3>            
+                <p class="pt-3 mx-4">kamu belum berlangganan, jadi cuma bisa nonton segini deh..
+                    <strong>kebetulan. lagi promo nih, silahkan cek pada halaman Dashboard</strong>.</p>
+
+                <a type="button" href="/dashboard" class="btn btn-success">Dashboard</a>
+                    <i class="fas fa-book ml-1 white-text"></i>
+                </a>
+                <a type="button" href="/register" class="btn btn-outline-success waves-effect"> Tapi harus Daftar dulu disini</a>
+            </div>
+            <div class="align-items-center">
+
+                <p class="pt-3 mx-4">jika kamu sudah punya token yang aktif, silahkan input di bawah.
+                    <!-- <strong>jika token lupa, silahkan lewat <a href="/login">login disini</a> </strong>.</p> -->
+    
+                <form action="/login-by-token" method="POST">
+                    <input class="m-0 p-0" name="token" id="token" placeholder="dpfLPFHEVUW9syJ6hGjXfMo2KxUEMgZWVol1v1SrlUUYb5a9UAS!nxKdsdsdere4iHE">            
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        </div>
+        <!--/.Content-->
+    </div>
+    </div>
+    <!--Modal: modalCoupon-->
+    <header class="masthead">   
+        <div id="vid" class="player">
+            <video class="video-container" src="../static/storage/loading.mkv" autoplay="true" controls="controls" id="videos" height="200"></video>
+            <!-- <video class="video-container" autoplay>
+                <source src="../static/videos/moon.mp4" type="video/mp4" />
+                <source src="../static/videos/moon.mp4" type="video/webm" />
+                <p>No HTML5 video supported</p>
+            </video>
+            <div class="controls">
+              
+                <button class="controls__btn playPauseBtn" title="Toggle Play">
+                    ►
+                </button>
+            </div> -->
+        </div>
+    </header>
+    <!-- Masthead-->
+    
+    <div class="navigation">
+        <!-- Use a button to pause/play the video with JavaScript -->
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+            <span>
+                <span></span>
+                <a class="navbar-brand" href="#">
+                    <img src="../static/assets/img/ngomg-logo.png" class="rounded-circle" height="50" alt="Avatar"
+                        loading="lazy" />
+                </a>
+                
+            </span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                   
+                        {% if username is none %}
+                        <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+                        {% else %}
+                        <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        <a aria-readonly="true" class="nav-link" href="#">youtube(coming soon)</a>
+                    </li>
+                    <li>
+                        {% if token_status == 'active' %}
+                        <span class="nav-link" style="color: white;" >yeahh 🎊{{username}} your token is {{token_status}}<span class="sr-only">(current)</span></span>       
+                        {% elif token_status == 'deactive'%}
+                        <a class="nav-link" ><span class="sr-only">(current)</span></a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+            <h3 style="font-weight: bold;"> Terdapat <span>{{total_all_data}}</span> Kalimat Keseluruhan</h3>
+        </nav>
+    </div>
+    
+    
+    <div class="filter-card">
+        <!-- <video src="../static/storage/2cf3d522-3efb-11ed-9527-00155d1633f5.mp4" autoplay="true" controls="controls" id="videos" height="200"> -->
+        <!-- Use a button to pause/play the video with JavaScript -->
+        <div style="text-align: right;"><button type="button" class="btn btn-secondary" id="download-button">Download Video</button></div>
+        <div id="sub" class="subtitle" ></div>
+        <div class="search-bar d-flex justify-content-between" >
+            <span>total data pencariaan: <span>{{total_data}}</span> </span> 
+            <form class="form-inline" action="/search-script" method="GET" enctype="form-data">
+                <input class="form-control mr-sm-2" name="search-keyword" value="{{search_keyword}}" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" name="search-figure-keyword" type="text" placeholder="Search figure: ex Presiden, Jokowi, Indonesia" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <script src="../static/js/scripts.js"></script>
+    <script>       
+        // JQUERY
+      
+
+        // var count = 1;
+        // var mp4Vid = document.getElementById('mp4Source');
+        const x = JSON.parse('{{ ALL_DATA|tojson }}')
+        const status_token = JSON.parse('{{ token_status|tojson }}')
+        
+        var search_keyword = JSON.parse('{{ search_keyword | tojson }}').toLowerCase()
+  
+        // console.log(x[0])
+        // for (var j = 0; j < 4; j++) {
+        //         scene_name = x[j]['scene_name'];
+        //         $(mp4Vid).attr('src', "../static/storage/" + scene_name);
+        //         mp4Vid.load();
+        //         mp4Vid.play();
+        //         console.log(j)
+        //     }
+        console.log(x)
+        var videoSource = new Array();
+        var subtitle    = new Array();
+        var dump_numb   = 0;
+        var video_active    = ''
+
+        for (var j = 0; j < x.length; j++) {
+            console.log(x[j])
+            console.log("limit----------    ")
+            scene_name      = x[j]['scene_name'];
+        
+            videoSource[j]  = '../static/storage/'+scene_name;
+
+            subtitle[j]     =  x[j]['ref'].toLowerCase().replace(new RegExp(search_keyword, "g"), "<span class=\"text-white bg-warning\">"+search_keyword+"</span>");;
+        }
+      
+        let key             = 0; // global
+        const videoCount    = videoSource.length;
+        const element       = document.getElementById("videos");
+      
+        function playVideo(videoNum) {
+
+            video_active = videoSource[videoNum];
+            element.setAttribute("src", videoSource[videoNum]);
+            element.setAttribute("type",'video/mp4');
+            element.autoplay = true;
+            element.load();
+            element.play();
+
+            // for the subtitle is here
+            var theDiv = document.getElementById("sub");
+            theDiv.innerHTML= subtitle[videoNum];
+        }
+        document.getElementById('videos').addEventListener('ended', myFunctionHandle, false);
+        
+        function myFunctionHandle() {
+            key++;
+            dump_numb ++;            
+            
+            if(dump_numb == 5 && status_token != 'active'){
+                $("#modalSorry").modal({backdrop: 'static', keyboard: false});
+               
+            }
+            else{                
+                if (key == videoCount) {
+                    key = 0;
+                    playVideo(key);
+                } else {
+                    playVideo(key);
+                }
+            }
+        }
+
+        const downloadButton = document.getElementById("download-button");
+        downloadButton.addEventListener("click", downloadVideo);
+
+        function downloadVideo() {
+            const videoUrl = video_active
+            const a = document.createElement("a");
+            a.href = videoUrl;
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        </script>
+</body>
+
+</html>

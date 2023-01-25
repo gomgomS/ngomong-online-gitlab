@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../static/assets/img/favicon.ico">
+    <title>List Video - ngomong</title>
+    <link rel="stylesheet" type="text/css" href="/static/lib/bootstrap/css/bootstrap.css">
+    <link href="/static/css/style-admin.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/lib/flatpicker/flatpickr.min.css">
+</head>
+
+<body>
+    <div>
+        <!--Main Navigation-->
+        <div id="include"></div>
+        <!--Main Navigation-->
+       
+   
+         <!--Main layout-->
+        <main style="margin-top: 10%">
+       <div class="list-content-part m-4">
+           <table class="table">
+               <thead>
+                   <tr>
+                       <th scope="col">#</th>
+                       <th scope="col">Title</th>
+                       <th scope="col">Focus Figure</th>
+                       <th scope="col">Video Source</th>
+                       <th scope="col">Action</th>
+                                
+                       <!-- <th> action </th> -->
+                   </tr>
+               </thead>
+               <tbody>
+                   {%for data in ALL_DATA %}
+                   <tr>
+                       <th scope="row"></th>
+                       <td>
+                           <span class="d-inline-block text-truncate"
+                           style="max-width: 150px;">
+                           {{data['title']}}</span>
+                        </td>
+                       <td>
+                           <span class="d-inline-block text-truncate"
+                               style="max-width: 150px;">{{data['focus_figure']}}</span>
+                       </td>
+                       <td>{{data['video_source']}}</td>
+                       <td>{{data['id_upload']}}</td>
+                     
+                       <td>
+                           <!-- <form action="/change-status-live-content" method="POST">
+                               <input type="hidden" class="form-control" value="{{data['id_upload']}}" name="change-status">
+                               <input type="submit" value="LIVE CONTENT">
+                           </form> -->
+   
+                           <form action="/delete-video-data" method="POST">
+                               <input type="hidden" class="form-control" value="{{data['id_upload']}}" name="delete">
+                               <input type="submit" value="DELETE">
+                           </form>
+                       </td>
+                   </tr>
+                   {%endfor%}
+               </tbody>
+           </table>
+       </div>
+        </main>
+        <!--Main layout-->
+    </div>
+    <script src="/static/lib/jquery/jquery.min.js"></script>
+    <script src="/static/datetimepicker-master/jquery.js"></script>
+    <script src="/static/lib/flatpicker/flatpickr.js"></script>
+    <script src="/static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function(){ 
+            $.get("nav", function(data) {
+                $("#include").html(data);
+            });
+        });       
+    </script>
+</body>
+
+</html>
