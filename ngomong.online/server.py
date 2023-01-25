@@ -60,6 +60,7 @@ from flask import make_response
 from flask import redirect
 from flask import url_for
 from flask import flash
+from flask import send_from_directory
 
 
 from flask_wtf.csrf import CSRFProtect
@@ -75,6 +76,10 @@ app.db_update_context, app.db_table_fks = model.get_db_table_paths(model.db)
 # sched = BackgroundScheduler()    
 
 ########################## CALLBACK API ###################################
+
+@app.route('/static/<path:path>')
+def send_js(path):
+    return send_from_directory('static', path)
 
 @app.route("/hi", methods=["GET"])
 def api_hi():

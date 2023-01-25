@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../static/assets/img/favicon.ico">
     <title>List User - ngomong</title>
-    <link rel="stylesheet" type="text/css" href="../../static/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/style-admin.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/lib/flatpicker/flatpickr.min.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/light.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style-admin.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/flatpicker/flatpickr.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/light.min.css') }}">
 </head>
 
 <body>
@@ -179,11 +179,11 @@
         </main>
         <!--Main layout-->
     </div>
-    <script src="../../static/lib/jquery/jquery.min.js"></script>
-    <script src="../../static/lib/flatpicker/flatpickr.js"></script>
-    <script src="../../static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../static/js/moment.min.js"></script>
-    <script src="../../static/js/shortcut-buttons-flatpickr.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/flatpicker/flatpickr.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/shortcut-buttons-flatpickr.min.js') }}"></script>
 
     <script>
         //  ['datepicker', 'datepicker2'].forEach(el => {
@@ -197,7 +197,6 @@
         // }); 
 
         var  ALL_DATA = {{ALL_DATA | tojson}};
-        console.log(ALL_DATA)
         
         $(`#datepicker`).flatpickr({
 
@@ -220,7 +219,6 @@
                         { label: '1 tahun' },
                     ],
                     onClick(index, fp, button) {
-                        console.log(index)
 
                         if (index == 0) {
 
@@ -284,15 +282,15 @@
                 arr = arr.replace(/'/g, `"`);
                 
                 const data_user = JSON.parse(arr);
-                console.log(data_user)
+
                 $("#userId").val(data_user['pkey'])
                 $("#userName").html(data_user['name']);
                 $("#userEmail").html(data_user['email']);
                 
-                console.log(data_user.token_data.length)
+
                 for(i=0;i<data_user.token_data.length;i++){
                     $(".data-each-token").append("<tr id='token-column"+i+"'></tr>");
-                    console.log(data_user.token_data[i].tipe_token);
+
                     var _html = "<td>"+data_user.token_data[i]['tipe_token']+"</td>\
                                 <td>"+data_user.token_data[i]['token']+"</td>\
                                 <td>"+data_user.token_data[i]['status_token']+"</td>\
