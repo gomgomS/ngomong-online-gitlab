@@ -40,6 +40,7 @@ from phrase_get_app     import search_phrase
 
 from manage_video       import split_raw_phrase
 from manage_video       import delete_video_data
+from manage_video       import delete_user_data
 from manage_video       import generate_token
 
 from user               import dashboard
@@ -231,6 +232,17 @@ def search_script():
 def delete_video_data_all():  
     params                = sanitize.clean_html_dic(request.form.to_dict())
     response = delete_video_data.delete_video_data(app).process( params )    
+    res = list(response.keys())[0]  #take first key in list     
+    return redirect(url_for('content_direct',kboom=response[res]))      
+# end def
+
+# End Delete Data Video
+
+# Begin Delete Data user
+@app.route("/delete-user-data", methods=["POST"])
+def delete_user_data_all():  
+    params                = sanitize.clean_html_dic(request.form.to_dict())
+    response = delete_user_data.delete_user_data(app).process( params )    
     res = list(response.keys())[0]  #take first key in list     
     return redirect(url_for('content_direct',kboom=response[res]))      
 # end def

@@ -149,7 +149,6 @@
                             <td>{{data['name']}}</td>
                             <td >{{data['email']}}</td>
                             <td>{{data['role']}}</td>
-                            
                             <td>
                                 <div class="flex d-flex justify-content-between">
 
@@ -163,10 +162,9 @@
                                    <input type="hidden" class="form-control" value="{{data['id_upload']}}" name="change-status">
                                    <input type="submit" value="LIVE CONTENT">
                                </form> -->
-    
-                                    <form action="/delete-video-data" method="POST">
-                                        <input type="hidden" class="form-control" value="{{data['id_upload']}}"
-                                            name="delete">
+                                 
+                                    <form action="/delete-user-data" method="POST">
+                                        <input type="hidden" class="form-control" value="{{data['pkey']}}" name="delete">
                                         <input type="submit" class="btn btn-warning" value="DELETE">
                                     </form>
                                 </div>

@@ -43,7 +43,7 @@
                     <!-- <strong>jika token lupa, silahkan lewat <a href="/login">login disini</a> </strong>.</p> -->
     
                 <form action="/login-by-token" method="POST">
-                    <input class="m-0 p-0" name="token" id="token" placeholder="dpfLPFHEVUW9syJ6hGjXfMo2KxUEMgZWVol1v1SrlUUYb5a9UAS!nxKdsdsdere4iHE">            
+                    <input class="m-0 p-0" name="token" id="token" >            
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -190,7 +190,7 @@
             key++;
             dump_numb ++;            
             
-            if(dump_numb == 5 && status_token != 'active'){
+            if(dump_numb == 30 && status_token != 'active'){
                 $("#modalSorry").modal({backdrop: 'static', keyboard: false});
                
             }

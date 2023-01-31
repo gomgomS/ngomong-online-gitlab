@@ -27,14 +27,17 @@ app_config_handle           = open(G_STATIC_STARTUP_PATH + G_CONF_FILE , "r")
 config_json_str             = app_config_handle.read()
 config_json                 = json.loads( config_json_str )
 
+
+hostdb_prod = 'mongo_seed'
+hostdb_dev = '127.0.0.1'
 pytavia_dispatchDB  = "pytavia_dispatchDB"
-pytavia_dispatch    = "mongodb://mongo_seed:27017/"
+pytavia_dispatch    = "mongodb://"+hostdb_prod+":27017/"
 
 #DEVELOPMENT
 
 #Database
 mainDB = "mainDB"
-mainDB_string = "mongodb://mongo_seed:27017/" + mainDB
+mainDB_string = "mongodb://"+hostdb_prod+":27017/" + mainDB
 
 #Local Storage
 

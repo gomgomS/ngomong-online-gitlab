@@ -156,7 +156,7 @@ class search_phrase:
             # condition if you not pay
             if params.get('search-keyword') is None:
                 return redirect("/search-script?search-keyword=%20"+random_subject+"%20&search-figure-keyword=")
-                manage_content_view  = self.mgdDB.db_scripts.find({},{'_id':0,'title_movie':1,'scene_name':1,'startTime':1,'endTime':1,'ref':1}).limit(5)
+                manage_content_view  = self.mgdDB.db_scripts.find({},{'_id':0,'title_movie':1,'scene_name':1,'startTime':1,'endTime':1,'ref':1}).limit(30)
             # else:
             #     self.webapp.logger.debug( "BELUM" )
             #     search_keyword = params['search-keyword']
@@ -172,7 +172,7 @@ class search_phrase:
                 if search_keyword != "" and search_figure_keyword == "":
                   
                     manage_content_view  = self.mgdDB.db_scripts.find({'$text':{'$search':'\"'+search_keyword+'\" '}},
-                                                {'_id':0,'title_movie':1,'scene_name':1,'startTime':1,'endTime':1,'ref':1}).sort([("startTime", pymongo.ASCENDING)]).limit(5)
+                                                {'_id':0,'title_movie':1,'scene_name':1,'startTime':1,'endTime':1,'ref':1}).sort([("startTime", pymongo.ASCENDING)]).limit(30)
                 else:
                     # 3 if filter only keyword figure 
                     filter = {}
@@ -180,7 +180,7 @@ class search_phrase:
 
                     if search_figure_keyword != "":                    
                         list_data_video  = self.mgdDB.db_data_video.find({'$text':{'$search':search_figure_keyword}},
-                                                {'_id':0,'focus_figure':1,'id_upload':1}).sort([("startTime", pymongo.ASCENDING)]).limit(5)
+                                                {'_id':0,'focus_figure':1,'id_upload':1}).sort([("startTime", pymongo.ASCENDING)]).limit(30)
                         arr = []
                         for data in list_data_video:
                             arr.append(data['id_upload'])
@@ -189,7 +189,7 @@ class search_phrase:
 
                     if search_keyword != "" : filter['ref'] = {'$regex' : search_keyword }
                     
-                    manage_content_view  = self.mgdDB.db_scripts.find(filter,{'_id':0,'title_movie':1,'scene_name':1,'startTime':1,'endTime':1,'ref':1}).sort([("startTime", pymongo.ASCENDING)]).limit(5)
+                    manage_content_view  = self.mgdDB.db_scripts.find(filter,{'_id':0,'title_movie':1,'scene_name':1,'startTime':1,'endTime':1,'ref':1}).sort([("startTime", pymongo.ASCENDING)]).limit(30)
             
         ALL_DATA     = list( manage_content_view )
   
